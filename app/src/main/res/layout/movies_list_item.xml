@@ -21,22 +21,24 @@
         android:background="@color/colorDark"
         android:onClick="@{() ->  callback.onClick(results)}"
         android:orientation="horizontal"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/deepPurple">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:paddingTop="20dp"
                 app:imageUrl="@{results.TMDB_IMAGE_PATH+results.posterPath}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="5dp"
                 android:paddingBottom="10dp">
 
@@ -50,16 +52,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="40dp"
+                    android:paddingLeft="20dp"
                     android:text="@{results.title}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingLeft="80dp">
+                    android:paddingLeft="280dp">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -71,7 +75,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{results.popularity.toString()}" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

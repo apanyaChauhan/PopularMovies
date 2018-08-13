@@ -2,19 +2,18 @@ package com.example.android.moviesApp.view.adapter;
 
 import android.databinding.DataBindingComponent;
 import android.databinding.DataBindingUtil;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 
 import com.example.android.moviesApp.Common.DataBoundListAdapter;
 import com.example.android.moviesApp.R;
-import com.example.android.moviesApp.databinding.MoviesListItemBinding;
+import com.example.android.moviesApp.databinding.MoviesDetailsItemBinding;
 import com.example.android.moviesApp.service.model.Movies;
 
 import java.util.Objects;
 
-public class MovieDetailsAdapter extends DataBoundListAdapter<Movies.Results, MoviesListItemBinding> {
+public class MovieDetailsAdapter extends DataBoundListAdapter<Movies.Results, MoviesDetailsItemBinding> {
 
     DataBindingComponent dataBindingComponent;
 
@@ -26,9 +25,9 @@ public class MovieDetailsAdapter extends DataBoundListAdapter<Movies.Results, Mo
 
 
     @Override
-    protected MoviesListItemBinding createBinding(ViewGroup parent) {
+    protected MoviesDetailsItemBinding createBinding(ViewGroup parent) {
 
-        MoviesListItemBinding binding = DataBindingUtil
+        MoviesDetailsItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout                                 .movies_details_item, parent, false,dataBindingComponent);
 
         Movies.Results movies = binding.getResults();
@@ -36,7 +35,7 @@ public class MovieDetailsAdapter extends DataBoundListAdapter<Movies.Results, Mo
     }
 
     @Override
-    protected void bind(MoviesListItemBinding binding, Movies.Results item) {
+    protected void bind(MoviesDetailsItemBinding binding, Movies.Results item) {
        binding.setResults(item);
        }
 
