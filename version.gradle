@@ -1,0 +1,143 @@
+/*
+ * Copyright (C) 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
+/**
+* Shared file between builds so that they can all use the same dependencies and
+* maven repositories.
+**/
+ext.deps = [:]
+def version = [:]
+version.arch_core = "1.1.1"
+version.room = "1.1.0-beta1"
+version.lifecycle = "1.1.1"
+version.support = "27.1.0"
+version.dagger = "2.11"
+version.junit = "4.12"
+version.espresso = "3.0.1"
+version.retrofit = "2.3.0"
+version.okhttp_logging_interceptor = "3.9.0"
+version.mockwebserver = "3.8.1"
+version.apache_commons = "2.5"
+version.mockito = "2.7.19"
+version.mockito_all = "1.10.19"
+version.dexmaker = "2.2.0"
+version.constraint_layout = "1.0.2"
+version.glide = "3.8.0"
+version.timber = "4.5.1"
+version.android_gradle_plugin = "3.0.1"
+version.rxjava2 = "2.1.3"
+version.rx_android = "2.0.1"
+version.atsl_runner = "1.0.1"
+version.atsl_rules = "1.0.1"
+version.hamcrest = "1.3"
+version.kotlin = "1.2.20"
+version.paging = "1.0.0-alpha7"
+def deps = [:]
+
+def support = [:]
+support.annotations = "com.android.support:support-annotations:$version.support"
+support.app_compat = "com.android.support:appcompat-v7:$version.support"
+support.recyclerview = "com.android.support:recyclerview-v7:$version.support"
+support.cardview = "com.android.support:cardview-v7:$version.support"
+support.design = "com.android.support:design:$version.support"
+support.v4 = "com.android.support:support-v4:$version.support"
+support.core_utils = "com.android.support:support-core-utils:$version.support"
+deps.support = support
+
+def room = [:]
+room.runtime = "android.arch.persistence.room:runtime:$version.room"
+room.compiler = "android.arch.persistence.room:compiler:$version.room"
+room.rxjava2 = "android.arch.persistence.room:rxjava2:$version.room"
+room.testing = "android.arch.persistence.room:testing:$version.room"
+deps.room = room
+
+def lifecycle = [:]
+lifecycle.runtime = "android.arch.lifecycle:runtime:$version.lifecycle"
+lifecycle.extensions = "android.arch.lifecycle:extensions:$version.lifecycle"
+lifecycle.java8 = "android.arch.lifecycle:common-java8:$version.lifecycle"
+lifecycle.compiler = "android.arch.lifecycle:compiler:$version.lifecycle"
+deps.lifecycle = lifecycle
+
+def arch_core = [:]
+arch_core.testing = "android.arch.core:core-testing:$version.arch_core"
+deps.arch_core = arch_core
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$version.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$version.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$version.retrofit"
+deps.retrofit = retrofit
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${version.okhttp_logging_interceptor}"
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$version.dagger"
+dagger.android = "com.google.dagger:dagger-android:$version.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$version.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$version.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$version.dagger"
+
+deps.dagger = dagger
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$version.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$version.espresso"
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$version.espresso"
+deps.espresso = espresso
+
+def atsl = [:]
+atsl.runner = "com.android.support.test:runner:$version.atsl_runner"
+atsl.rules = "com.android.support.test:rules:$version.atsl_runner"
+deps.atsl = atsl
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$version.mockito"
+mockito.all = "org.mockito:mockito-all:$version.mockito_all"
+deps.mockito = mockito
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$version.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$version.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin"
+
+deps.kotlin = kotlin
+deps.paging = "android.arch.paging:runtime:$version.paging"
+deps.glide = "com.github.bumptech.glide:glide:$version.glide"
+deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$version.dexmaker"
+deps.constraint_layout = "com.android.support.constraint:constraint-layout:$version.constraint_layout"
+deps.timber = "com.jakewharton.timber:timber:$version.timber"
+deps.junit = "junit:junit:$version.junit"
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$version.mockwebserver"
+deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$version.rxjava2"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$version.rx_android"
+deps.hamcrest = "org.hamcrest:hamcrest-all:$version.hamcrest"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$version.android_gradle_plugin"
+ext.deps = deps
+
+def build_version = [:]
+build_version.min_sdk = 14
+build_version.target_sdk = 26
+build_version.build_tools = "27.0.3"
+ext.build_version = build_version
+
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+ext.addRepos = this.&addRepos
