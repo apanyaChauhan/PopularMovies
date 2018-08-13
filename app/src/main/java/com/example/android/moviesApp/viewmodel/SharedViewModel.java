@@ -38,10 +38,12 @@ public class SharedViewModel extends ViewModel {
 
     }
 
-    @VisibleForTesting
+
     public LiveData<Resource<List<Movies.Results>>> getResults() {
         return results;
     }
+
+
 
 
     public void setId(String apiKey, String lang, int page) {
@@ -67,7 +69,6 @@ public class SharedViewModel extends ViewModel {
             return api_Key == null;
         }
     }
-
 
     public void retry() {
         if (this.moviesListObservable.getValue() != null) {

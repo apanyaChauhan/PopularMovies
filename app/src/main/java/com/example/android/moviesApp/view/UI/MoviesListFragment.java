@@ -43,7 +43,7 @@ public class MoviesListFragment extends Fragment implements Injectable {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SharedViewModel.class);
         initRecyclerView();
-        MoviesAdapter rvAdapter = new MoviesAdapter(dataBindingComponent,
+        MoviesAdapter  rvAdapter = new MoviesAdapter(dataBindingComponent,
                 moviesClickCallback);
         binding.moviesList.setAdapter(rvAdapter);
         adapter = new AutoClearedValue<>(this, rvAdapter);

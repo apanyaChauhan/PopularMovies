@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     public void show(Movies.Results movies) {
      MoviesFragment moviesFragment = MoviesFragment.forMovies(movies.getId().toString());
+     Log.d("moviesid",movies.getId().toString());
            getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("Movies")

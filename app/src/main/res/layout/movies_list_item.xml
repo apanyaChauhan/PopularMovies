@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="results"
             type="com.example.android.moviesApp.service.model.Movies.Results" />
@@ -27,43 +26,47 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
                 android:paddingTop="20dp"
                 app:imageUrl="@{results.TMDB_IMAGE_PATH+results.posterPath}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="5dp"
                 android:paddingBottom="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{results.releaseDate}" />
 
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="40dp"
+                    android:paddingTop="10dp"
                     android:paddingLeft="20dp"
                     android:text="@{results.title}"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorDark"
                     android:textSize="20dp"
                     android:textStyle="bold" />
-            </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingLeft="280dp">
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{results.releaseDate}"
+                        android:paddingRight="60dp"
+                        android:paddingLeft="30dp"/>
+
 
                     <ImageView
                         android:layout_width="20dp"
@@ -75,6 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{results.popularity.toString()}" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

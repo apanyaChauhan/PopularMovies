@@ -36,8 +36,7 @@ public class MoviesAdapter extends DataBoundListAdapter<Movies.Results, MoviesLi
         binding.getRoot().setOnClickListener(v -> {
             Movies.Results movies = binding.getResults();
             if (movies != null && moviesClickCallback != null) {
-                moviesClickCallback.onClick(movies);
-            }
+                moviesClickCallback.onClick(movies); }
 
         });
         return binding;

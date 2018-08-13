@@ -19,11 +19,13 @@ import com.example.android.moviesApp.Utils.AutoClearedValue;
 import com.example.android.moviesApp.binding.FragmentDataBindingComponent;
 import com.example.android.moviesApp.databinding.FragmentMoviesDetailsBinding;
 import com.example.android.moviesApp.di.Injectable;
-import com.example.android.moviesApp.view.adapter.MovieDetailsAdapter;
+import com.example.android.moviesApp.service.model.Movies;
+//import com.example.android.moviesApp.view.adapter.MovieDetailsAdapter;
 import com.example.android.moviesApp.view.callback.MoviesClickCallback;
 import com.example.android.moviesApp.viewmodel.SharedViewModel;
 
 import java.util.Collections;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -34,11 +36,12 @@ public class MoviesFragment extends Fragment implements Injectable {
     private FragmentMoviesDetailsBinding binding;
     private SharedViewModel viewModel;
     private DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
+    private int Movie_ID;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    AutoClearedValue<MovieDetailsAdapter> adapter;
+    //AutoClearedValue<MovieDetailsAdapter> adapter;
 
 
     @Nullable
@@ -46,7 +49,7 @@ public class MoviesFragment extends Fragment implements Injectable {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_details, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_details, container, false,dataBindingComponent);
         return binding.getRoot();
     }
 
@@ -55,21 +58,24 @@ public class MoviesFragment extends Fragment implements Injectable {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SharedViewModel       .class);
 
-        initRecyclerView();
-        MovieDetailsAdapter rvAdapter = new MovieDetailsAdapter(dataBindingComponent);
-        binding.moviesDetail.setAdapter(rvAdapter);
-        adapter = new AutoClearedValue<>(this, rvAdapter);
+        observeViewModel();
+        //MovieDetailsAdapter rvAdapter = new MovieDetailsAdapter(dataBindingComponent);
+        //binding.moviesDetail.setAdapter(rvAdapter);
+      //  adapter = new AutoClearedValue<>(this, rvAdapter);
         viewModel.setId("b8b9e99d11eb150d1abc559f9056a344", "en-US", 1);
     }
 
 
-    private void initRecyclerView() {
+    private void observeViewModel() {
 
         viewModel.getResults().observe(this, result -> {
             if (result != null && result.data != null) {
-                adapter.get().replace(result.data);
+                List<Movies.Results> list=result.data;
+                for(int i=0;i<list.size();i++){
+                   if(Integer.valueOf(getArguments().getString(KEY_Movies_ID))==list.get(i).id);                    binding.setResults(list.get(i));
+                }
             } else {
-                adapter.get().replace(Collections.emptyList());
+                binding.setResults(null);
             }
         });
     }

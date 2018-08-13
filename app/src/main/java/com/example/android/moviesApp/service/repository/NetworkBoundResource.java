@@ -46,9 +46,8 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     private void fetchFromNetwork(final LiveData<ResultType> dbSource) {
         LiveData<List<Movies.Results>> apiResponse = createCall();
         if(apiResponse==null){
-            Log.d("apires","isnull");
         }
-        else Log.d("apires","isnotnull");
+        else
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
         result.addSource(dbSource, newData -> setValue(Resource.loading(newData)));
         result.addSource(apiResponse, response -> {
@@ -56,7 +55,6 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
             result.removeSource(dbSource);
             //noinspection ConstantConditions
             if (!response.isEmpty()) {
-                Log.d("response","it is successfull");
                 appExecutors.diskIO().execute(() -> {
                     saveCallResult(processResponse(response));
                     appExecutors.mainThread().execute(() ->
@@ -68,7 +66,6 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
                     );
                 });
             } else {
-                Log.d("response","isnull");
                 onFetchFailed();
                 result.addSource(dbSource,
                         newData -> setValue(null));
