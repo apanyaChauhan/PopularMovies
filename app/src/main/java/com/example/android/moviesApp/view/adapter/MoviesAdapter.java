@@ -20,7 +20,7 @@ public class MoviesAdapter extends DataBoundListAdapter<Movies.Results, MoviesLi
     private final MoviesClickCallback moviesClickCallback;
     DataBindingComponent dataBindingComponent;
 
-    public MoviesAdapter(DataBindingComponent dataBindingComponent, MoviesClickCallback moviesClickCallback) {
+    public MoviesAdapter(DataBindingComponent dataBindingComponent, MoviesClickCallback             moviesClickCallback) {
         this.dataBindingComponent = dataBindingComponent;
         this.moviesClickCallback = moviesClickCallback;
     }
