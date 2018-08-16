@@ -16,6 +16,4 @@ public abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract MoviesListFragment contributeMoviesListFragment();
 
-
-
 }

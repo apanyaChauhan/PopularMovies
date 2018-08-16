@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(includes = ViewModelModule.class)
 class AppModule {
     @Singleton @Provides
-    ApiInterface provideGithubService() {
+    ApiInterface provideMoviesService() {
         return new Retrofit.Builder()
                 .baseUrl(ApiInterface.USGS_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -65,7 +65,7 @@ class AppModule {
        }
 
     @Singleton @Provides
-    MoviesDao provideRepoDao(MoviesDatabase db) {
+    MoviesDao provideMoviesDao(MoviesDatabase db) {
         return db.moviesDao();
     }
 

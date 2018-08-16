@@ -19,7 +19,6 @@ import javax.inject.Inject;
 public class SharedViewModel extends ViewModel {
     public LiveData<Resource<List<Movies.Results>>> moviesListObservable;
     private MutableLiveData<MoviesId> moviesId = new MutableLiveData<>();
-    private MoviesRepository moviesRepository;
     private LiveData<Resource<List<Movies.Results>>> results;
 
 

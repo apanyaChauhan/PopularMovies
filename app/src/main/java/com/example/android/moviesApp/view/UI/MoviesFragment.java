@@ -41,9 +41,6 @@ public class MoviesFragment extends Fragment implements Injectable {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    //AutoClearedValue<MovieDetailsAdapter> adapter;
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -59,10 +56,7 @@ public class MoviesFragment extends Fragment implements Injectable {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SharedViewModel       .class);
 
         observeViewModel();
-        //MovieDetailsAdapter rvAdapter = new MovieDetailsAdapter(dataBindingComponent);
-        //binding.moviesDetail.setAdapter(rvAdapter);
-      //  adapter = new AutoClearedValue<>(this, rvAdapter);
-        viewModel.setId("b8b9e99d11eb150d1abc559f9056a344", "en-US", 1);
+            viewModel.setId("b8b9e99d11eb150d1abc559f9056a344", "en-US", 1);
     }
 
 
