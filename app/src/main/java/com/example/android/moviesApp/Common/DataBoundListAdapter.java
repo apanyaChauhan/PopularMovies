@@ -32,6 +32,7 @@ public abstract class DataBoundListAdapter<T, V extends ViewDataBinding>
     public final void onBindViewHolder(DataBoundViewHolder<V> holder, int position) {
         bind(holder.binding, items.get(position));
         holder.binding.executePendingBindings();
+
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -40,7 +41,6 @@ public abstract class DataBoundListAdapter<T, V extends ViewDataBinding>
         dataVersion ++;
         if (items == null) {
             if (update == null) {
-                Log.d("update","null");
                 return;
             }
             items = update;

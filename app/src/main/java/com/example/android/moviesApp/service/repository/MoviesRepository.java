@@ -20,11 +20,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
 @Singleton
 public class MoviesRepository {
     private ApiService apiService;
@@ -43,8 +38,6 @@ public class MoviesRepository {
 
 
 public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, String language, int page ) {
-
-    Log.d("getMoviesList","response" );
        LiveData<Resource<List<Movies.Results>>> resource=new                                          NetworkBoundResource<List<Movies.Results>, List<Movies.Results>>(appExecutors) {
             @Override
             protected void saveCallResult(@NonNull List<Movies.Results> item) {
@@ -91,27 +84,6 @@ public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, Str
     }
 
 
-    /*public LiveData<ApiResponse<List<Movies.Results>>> getMovieList(String apiKey, String language, int page ) {
-        final MutableLiveData<ApiResponse<List<Movies.Results>>> data = new MutableLiveData<>();
-
-        apiService.getMoviesList(apiKey,language,page).enqueue(new Callback<Movies>()              {
-            @Override
-            public void onResponse(Call<Movies> call, Response<Movies> response) {
-
-                if (response.isSuccessful()) {
-
-                    data.setValue(response.body().getResults());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Movies> call, Throwable t) {
-                data.setValue(null);
-            }
-        });
-
-        return data;
-    }*/
 
 
 }

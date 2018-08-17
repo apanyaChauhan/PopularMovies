@@ -14,10 +14,10 @@
         android:background="@color/cardview_light_background"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
-            android:paddingTop="50dp"
+            android:paddingTop="10dp"
             app:imageUrl="@{results.TMDB_IMAGE_PATH+results.posterPath}"/>
 
         <TextView

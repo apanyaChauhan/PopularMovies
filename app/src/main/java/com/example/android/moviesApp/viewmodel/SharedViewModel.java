@@ -36,11 +36,10 @@ public class SharedViewModel extends ViewModel {
     }
 
 
+
     public LiveData<Resource<List<Movies.Results>>> getResults() {
         return results;
     }
-
-
 
 
     public void setId(String apiKey, String lang, int page) {

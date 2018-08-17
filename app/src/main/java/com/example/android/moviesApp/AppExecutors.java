@@ -31,6 +31,7 @@ public class AppExecutors {
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
                 new MainThreadExecutor());
     }
+    public Executor networkIO(){return networkIO;}
 
     public Executor diskIO() {
     return diskIO;

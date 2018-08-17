@@ -1,7 +1,9 @@
 package com.example.android.moviesApp.view.adapter;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.databinding.DataBindingComponent;
 import android.databinding.DataBindingUtil;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -30,24 +32,21 @@ public class MoviesAdapter extends DataBoundListAdapter<Movies.Results, MoviesLi
         MoviesListItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.movies_list_item,
                         parent, false, dataBindingComponent);
-
-
-        binding.getRoot().setOnClickListener(v -> {
-            Movies.Results movies = binding.getResults();
-            if (movies != null && moviesClickCallback != null) {
-                moviesClickCallback.onClick(movies); }
-
-        });
         return binding;
     }
 
     @Override
     protected void bind(MoviesListItemBinding binding, Movies.Results item) {
-        binding.setCallback(moviesClickCallback);
+
         binding.setResults(item);
+        binding.getRoot().setOnClickListener(v -> {
+            if (item != null && moviesClickCallback != null) {
+                moviesClickCallback.onClick(item); }
+        });
 
+        binding.setCallback(moviesClickCallback);
 
-    }
+        }
 
     @Override
     protected boolean areItemsTheSame(Movies.Results oldItem, Movies.Results newItem) {

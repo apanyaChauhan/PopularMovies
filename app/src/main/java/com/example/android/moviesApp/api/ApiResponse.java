@@ -37,24 +37,20 @@ public class ApiResponse<T> {
     public Map<String, String> links;
 
     public ApiResponse(Throwable error) {
-        Log.d("throweror", Integer.toString(code));
+
         code = 500;
         body = null;
         errorMessage = error.getMessage();
-
         links = Collections.emptyMap();
-        Log.d("eroor", errorMessage);
+
     }
 
     public ApiResponse(Response<T> response) {
         code = response.code();
-        Log.d("code", Integer.toString(code));
         if (response.isSuccessful()) {
-            Log.d("apiress", "isnotnull");
             body=response.body();
             errorMessage = null;
         } else {
-            Log.d("apiress", "isnull");
             String message = null;
             if (response.errorBody() != null) {
                 try {

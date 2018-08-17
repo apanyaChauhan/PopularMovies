@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,12 @@ public class MoviesListFragment extends Fragment implements Injectable {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_list, container, false, dataBindingComponent);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_list, container,       false, dataBindingComponent);
         binding.setRetryCallback(() -> viewModel.retry());
         binding.setIsLoading(true);
         return binding.getRoot();
     }
+
 
     private void initRecyclerView() {
         viewModel.getResults().observe(this, result -> {
