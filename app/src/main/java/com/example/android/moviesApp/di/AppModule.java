@@ -5,13 +5,12 @@ import android.app.Application;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
-import android.util.Log;
 
 
 import com.example.android.moviesApp.Utils.LiveDataCallAdapterFactory;
 import com.example.android.moviesApp.service.Persistence.MoviesDao;
 import com.example.android.moviesApp.service.Persistence.MoviesDatabase;
-import com.example.android.moviesApp.service.repository.ApiInterface;
+import com.example.android.moviesApp.service.repository.ApiService;
 
 import javax.inject.Singleton;
 
@@ -23,13 +22,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(includes = ViewModelModule.class)
 class AppModule {
     @Singleton @Provides
-    ApiInterface provideMoviesService() {
+    ApiService provideMoviesService() {
         return new Retrofit.Builder()
-                .baseUrl(ApiInterface.USGS_URL)
+                .baseUrl(ApiService.USGS_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .build()
-                .create(ApiInterface.class);
+                .create(ApiService.class);
     }
 
    @Singleton @Provides

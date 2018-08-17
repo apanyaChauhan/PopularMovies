@@ -2,15 +2,18 @@ package com.example.android.moviesApp.service.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 
 import com.example.android.moviesApp.AppExecutors;
 import com.example.android.moviesApp.Utils.Resource;
+import com.example.android.moviesApp.api.ApiResponse;
 import com.example.android.moviesApp.service.Persistence.MoviesDao;
 import com.example.android.moviesApp.service.Persistence.MoviesDatabase;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.service.Persistence.Movies;
 
 import java.util.List;
 
@@ -24,24 +27,24 @@ import retrofit2.Response;
 
 @Singleton
 public class MoviesRepository {
-    private ApiInterface apiInterface;
+    private ApiService apiService;
     private MoviesDao moviesDao;
     public  AppExecutors appExecutors;
     private MoviesDatabase db;
 
     @Inject
     public MoviesRepository(AppExecutors appExecutors, MoviesDatabase db, MoviesDao moviesDao,
-                          ApiInterface Service) {
+                          ApiService Service) {
         this.db = db;
         this.moviesDao = moviesDao;
-        this.apiInterface = Service;
+        this.apiService = Service;
         this.appExecutors = appExecutors;
     }
 
 
 public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, String language, int page ) {
 
-
+    Log.d("getMoviesList","response" );
        LiveData<Resource<List<Movies.Results>>> resource=new                                          NetworkBoundResource<List<Movies.Results>, List<Movies.Results>>(appExecutors) {
             @Override
             protected void saveCallResult(@NonNull List<Movies.Results> item) {
@@ -61,8 +64,20 @@ public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, Str
 
             @NonNull
             @Override
-            protected LiveData<List<Movies.Results>> createCall() {
-                return getMovieList(apiKey, language, page);
+            protected LiveData<ApiResponse<List<Movies.Results>>> createCall() {
+            ApiResponse <Movies> moviesApiResponse= apiService.getMoviesList(apiKey,language,           page).getValue();
+
+                Log.d("apiresponse","response" );
+
+                List<Movies.Results> results=moviesApiResponse.body.getResults();
+
+            ApiResponse<List<Movies.Results>> listApiResponse=  (ApiResponse<List<Movies                .Results>>) results;
+
+            MutableLiveData<ApiResponse<List<Movies.Results>>> apiResponseLiveData=new                  MutableLiveData<>();
+
+            apiResponseLiveData.setValue(listApiResponse);
+            return apiResponseLiveData;
+
             }
 
             @Override
@@ -76,16 +91,16 @@ public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, Str
     }
 
 
-    public LiveData<List<Movies.Results>> getMovieList(String apiKey, String language, int page ) {
-        final MutableLiveData<List<Movies.Results>> data = new MutableLiveData<>();
+    /*public LiveData<ApiResponse<List<Movies.Results>>> getMovieList(String apiKey, String language, int page ) {
+        final MutableLiveData<ApiResponse<List<Movies.Results>>> data = new MutableLiveData<>();
 
-        apiInterface.getMoviesList(apiKey,language,page).enqueue(new Callback<Movies>()              {
+        apiService.getMoviesList(apiKey,language,page).enqueue(new Callback<Movies>()              {
             @Override
             public void onResponse(Call<Movies> call, Response<Movies> response) {
 
                 if (response.isSuccessful()) {
-                    Movies movies1 = response.body();
-                    data.setValue(movies1.getResults());
+
+                    data.setValue(response.body().getResults());
                 }
             }
 
@@ -96,7 +111,7 @@ public LiveData<Resource<List<Movies.Results>>> getMoviesList(String apiKey, Str
         });
 
         return data;
-    }
+    }*/
 
 
 }

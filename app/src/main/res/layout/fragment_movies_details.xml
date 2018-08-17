@@ -5,7 +5,7 @@
     <data>
         <variable
             name="results"
-            type="com.example.android.moviesApp.service.model.Movies.Results" />
+            type="com.example.android.moviesApp.service.Persistence.Movies.Results" />
     </data>
 
     <LinearLayout
@@ -29,11 +29,6 @@
             android:paddingRight="30dp"/>
 
 
-        <!--<android.support.v7.widget.RecyclerView
-            android:id="@+id/movies_Detail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />-->
 
     </LinearLayout>
 

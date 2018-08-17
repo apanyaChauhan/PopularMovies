@@ -6,7 +6,7 @@
     <data>
         <variable
             name="results"
-            type="com.example.android.moviesApp.service.model.Movies.Results" />
+            type="com.example.android.moviesApp.service.Persistence.Movies.Results" />
 
         <variable
             name="callback"

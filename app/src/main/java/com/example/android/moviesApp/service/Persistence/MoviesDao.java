@@ -6,8 +6,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.example.android.moviesApp.service.model.Movies;
-
 import java.util.List;
 
 @Dao

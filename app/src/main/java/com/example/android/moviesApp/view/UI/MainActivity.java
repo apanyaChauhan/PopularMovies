@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.android.moviesApp.R;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.service.Persistence.Movies;
 
 import javax.inject.Inject;
 
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
@@ -33,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new                                       MoviesListFragment());
             fragmentTransaction.commit();
-
-        }
+     }
     }
+
 
     @Override
     public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
 import android.util.Log;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.service.Persistence.Movies;
 
 import java.io.IOException;
 import java.util.Collections;

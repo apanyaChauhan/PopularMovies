@@ -2,14 +2,13 @@ package com.example.android.moviesApp.view.adapter;
 
 import android.databinding.DataBindingComponent;
 import android.databinding.DataBindingUtil;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.android.moviesApp.Common.DataBoundListAdapter;
 import com.example.android.moviesApp.R;
 import com.example.android.moviesApp.databinding.MoviesListItemBinding;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.service.Persistence.Movies;
 import com.example.android.moviesApp.view.callback.MoviesClickCallback;
 
 import java.util.Objects;

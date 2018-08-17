@@ -7,11 +7,11 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
-import android.util.Log;
 
 import com.example.android.moviesApp.AppExecutors;
 import com.example.android.moviesApp.Utils.Resource;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.api.ApiResponse;
+import com.example.android.moviesApp.service.Persistence.Movies;
 
 import java.util.List;
 import java.util.Objects;
@@ -44,7 +44,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     }
 
     private void fetchFromNetwork(final LiveData<ResultType> dbSource) {
-        LiveData<List<Movies.Results>> apiResponse = createCall();
+        LiveData<ApiResponse<RequestType>> apiResponse = createCall();
         if(apiResponse==null){
         }
         else
@@ -54,7 +54,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
             result.removeSource(apiResponse);
             result.removeSource(dbSource);
             //noinspection ConstantConditions
-            if (!response.isEmpty()) {
+            if (!response.isSuccessful()) {
                 appExecutors.diskIO().execute(() -> {
                     saveCallResult(processResponse(response));
                     appExecutors.mainThread().execute(() ->
@@ -82,12 +82,12 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     }
 
     @WorkerThread
-    protected List<Movies.Results> processResponse(List<Movies.Results> response) {
-        return response;
+    protected RequestType processResponse(ApiResponse<RequestType> response) {
+        return response.body;
     }
 
     @WorkerThread
-    protected abstract void saveCallResult(@NonNull List<Movies.Results> item);
+    protected abstract void saveCallResult(@NonNull RequestType item);
 
     @MainThread
     protected abstract boolean shouldFetch(@Nullable ResultType data);
@@ -100,5 +100,5 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     @NonNull
     @MainThread
-    protected abstract LiveData<List<Movies.Results>> createCall();
+    protected abstract LiveData<ApiResponse<RequestType>> createCall();
 }

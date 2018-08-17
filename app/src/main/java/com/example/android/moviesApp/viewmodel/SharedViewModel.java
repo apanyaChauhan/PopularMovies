@@ -4,11 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.VisibleForTesting;
-import android.util.Log;
 
 import com.example.android.moviesApp.Utils.Resource;
-import com.example.android.moviesApp.service.model.Movies;
+import com.example.android.moviesApp.service.Persistence.Movies;
 import com.example.android.moviesApp.service.repository.MoviesRepository;
 
 import java.util.List;

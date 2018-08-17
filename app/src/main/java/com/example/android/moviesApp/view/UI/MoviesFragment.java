@@ -7,24 +7,17 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.moviesApp.R;
-import com.example.android.moviesApp.Utils.AutoClearedValue;
 import com.example.android.moviesApp.binding.FragmentDataBindingComponent;
 import com.example.android.moviesApp.databinding.FragmentMoviesDetailsBinding;
 import com.example.android.moviesApp.di.Injectable;
-import com.example.android.moviesApp.service.model.Movies;
-//import com.example.android.moviesApp.view.adapter.MovieDetailsAdapter;
-import com.example.android.moviesApp.view.callback.MoviesClickCallback;
+import com.example.android.moviesApp.service.Persistence.Movies;
 import com.example.android.moviesApp.viewmodel.SharedViewModel;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,7 +29,7 @@ public class MoviesFragment extends Fragment implements Injectable {
     private FragmentMoviesDetailsBinding binding;
     private SharedViewModel viewModel;
     private DataBindingComponent dataBindingComponent = new FragmentDataBindingComponent(this);
-    private int Movie_ID;
+
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
